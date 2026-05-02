@@ -55,7 +55,7 @@ st.markdown("""
         color: #FFFFFF;
     }
     </style>
-""", unsafe_allow_index=True)
+""", unsafe_allow_html=True)
 
 # 3. العناوين (مطابقة للوغو)
 st.title("🧠 THE DEEP LAB")
@@ -131,7 +131,7 @@ if st.button("Calculate PMP Levels"):
                 st.metric(label="📉 PMP Low (Target)", value=f"{data['PMP_Low']:.2f}")
             
             st.divider()
-            st.markdown("<p style='color:#00D4FF; font-weight:bold;'>📊 تفاصيل الحساب:</p>", unsafe_allow_index=True)
+            st.markdown("<p style='color:#00D4FF; font-weight:bold;'>📊 تفاصيل الحساب:</p>", unsafe_allow_html=True)
             st.write(f"- **QQQ 09:00 AM Open:** {data['QQQ_9AM_Open']:.2f}")
             st.write(f"- **NQ 09:00 AM Open:** {data['NQ_9AM_Open']:.2f}")
             st.write(f"- **Multiplier (K):** {data['K']:.6f}")
