@@ -3,67 +3,71 @@ import pandas as pd
 import streamlit as st
 
 # 1. إعدادات الصفحة
-st.set_page_config(page_title="The Deep Lab | PMP", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="The Deep Lab | PMP", page_icon="🟢", layout="centered")
 
-# 2. الهوية البصرية (Theme) المستوحاة من اللوغو
+# 2. الهوية البصرية (Neon Green Theme)
 st.markdown("""
     <style>
-    /* لون الخلفية (أسود عميق) */
+    /* لون الخلفية (أسود كحل) */
     .stApp {
         background-color: #000000;
     }
     
-    /* العناوين (الأزرق السماوي المستوحى من كلمة DEEP LAB) */
+    /* العناوين (أخضر نيون) */
     h1, h2, h3 {
-        color: #00D4FF !important;
-        font-family: 'Arial', sans-serif;
+        color: #39FF14 !important;
+        font-family: 'Courier New', Courier, monospace; /* خط يشبه شاشات التداول */
+        text-shadow: 0 0 5px #39FF14; /* إشعاع خفيف للعناوين */
     }
     
     /* النصوص العادية */
-    p, .stMarkdown {
-        color: #FFFFFF;
+    p, .stMarkdown, li {
+        color: #E0E0E0;
     }
     
-    /* لون أرقام النتائج PMP (الأخضر النيون المستوحى من الشموع اليابانية) */
+    /* لون أرقام النتائج PMP (أخضر نيون ساطع) */
     [data-testid="stMetricValue"] {
-        color: #5DE23C !important;
+        color: #39FF14 !important;
+        text-shadow: 0 0 10px #39FF14;
     }
     
-    /* تصميم الزر */
+    /* تصميم الزر بنمط النيون */
     .stButton>button {
         background-color: #000000;
-        color: #00D4FF;
-        border: 2px solid #00D4FF;
+        color: #39FF14;
+        border: 2px solid #39FF14;
         border-radius: 8px;
         width: 100%;
         font-size: 18px;
         font-weight: bold;
         transition: 0.3s;
+        box-shadow: 0 0 10px #39FF14; /* إشعاع النيون */
     }
     
     /* تأثير الزر عند تمرير الفأرة (Hover) */
     .stButton>button:hover {
-        background-color: #00D4FF;
+        background-color: #39FF14;
         color: #000000;
-        border: 2px solid #00D4FF;
+        border: 2px solid #39FF14;
+        box-shadow: 0 0 20px #39FF14, 0 0 40px #39FF14; /* إشعاع قوي كي تحط عليه لاصوري */
     }
     
-    /* تصميم رسائل النجاح والخطأ */
+    /* تصميم رسائل النجاح */
     .stAlert {
         background-color: #0A0A0A;
-        border: 1px solid #5DE23C;
+        border: 1px solid #39FF14;
         color: #FFFFFF;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# 3. العناوين (مطابقة للوغو)
-st.title("🧠 THE DEEP LAB")
+# 3. العناوين
+st.title("🟢 THE DEEP LAB")
 st.subheader("Market Research & Trading | PMP Concept")
 st.markdown("استخراج مستويات السيولة (Liquidity Levels) لمعامل الربط بين NQ و QQQ")
 st.divider()
 
-# 4. وظيفة الحساب
+# 4. وظيفة الحساب (بقات كيما راهي)
 def calculate_pmp():
     try:
         qqq = yf.Ticker("QQQ").history(period="5d", interval="5m", prepost=True)
@@ -131,7 +135,7 @@ if st.button("Calculate PMP Levels"):
                 st.metric(label="📉 PMP Low (Target)", value=f"{data['PMP_Low']:.2f}")
             
             st.divider()
-            st.markdown("<p style='color:#00D4FF; font-weight:bold;'>📊 تفاصيل الحساب:</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color:#39FF14; font-weight:bold; font-size: 20px;'>📊 تفاصيل الحساب:</p>", unsafe_allow_html=True)
             st.write(f"- **QQQ 09:00 AM Open:** {data['QQQ_9AM_Open']:.2f}")
             st.write(f"- **NQ 09:00 AM Open:** {data['NQ_9AM_Open']:.2f}")
             st.write(f"- **Multiplier (K):** {data['K']:.6f}")
